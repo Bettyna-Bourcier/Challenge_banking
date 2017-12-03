@@ -17,6 +17,21 @@ public class User {
     @Column
     private String lastName;
 
+    @Column(unique=true)
+    private String clientNumber;
+
+    @Column
+    private String password;
+
+    public User() {}
+
+    public User(String firstName, String lastName, String password, String clientNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.setPassword(password);
+        this.clientNumber = clientNumber;
+    }
+
     public int getId() {
         return id;
     }
@@ -35,5 +50,18 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getClientNumber() {
+        return clientNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        // TODO : use bCrypt for password
+        this.password = password;//  bCryptPasswordEncoder.encode(password);
     }
 }

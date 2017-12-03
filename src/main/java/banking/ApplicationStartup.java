@@ -19,10 +19,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
      */
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
-        User user = new User();
-        user.setFirstName("John");
-        user.setLastName("Doe");
-        userService.save(user);
+        userService.save(new User("John", "Doe", "challenge", "17859648F"));
         return;
     }
 }
