@@ -1,6 +1,10 @@
 package banking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "USER")
@@ -17,23 +21,32 @@ public class User {
     @Column
     private String lastName;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String clientNumber;
 
     @Column
+    @JsonIgnore
     private String password;
 
-    public User() {}
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Outgoings> outgoingsList = new ArrayList<>();
 
-    public User(String firstName, String lastName, String password, String clientNumber) {
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String clientNumber, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.setPassword(password);
         this.clientNumber = clientNumber;
+        this.password = password;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -61,7 +74,19 @@ public class User {
     }
 
     public void setPassword(String password) {
-        // TODO : use bCrypt for password
-        this.password = password;//  bCryptPasswordEncoder.encode(password);
+        this.password = password;
+    }
+
+    public List<Outgoings> getOutgoingsList() {
+        return outgoingsList;
+    }
+
+    public void setOutgoingsList(List<Outgoings> outgoingsList) {
+        this.outgoingsList = outgoingsList;
+    }
+
+    public void addOutgoing(Outgoings outgoing) {
+        outgoingsList.add(outgoing);
+        outgoing.setUser(this);
     }
 }
