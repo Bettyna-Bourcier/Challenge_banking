@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AuthenticationController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         return new ResponseEntity<User>(HttpStatus.OK);
     }
