@@ -1,7 +1,7 @@
 package banking.service;
 
-import banking.model.Outgoings;
-import banking.repository.OutgoingsRepository;
+import banking.model.Outgoing;
+import banking.repository.OutgoingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class OutgoingsService {
 
     @Autowired
-    private OutgoingsRepository outgoingsRepository;
+    private OutgoingRepository outgoingRepository;
 
-    public void save(Outgoings outgoings) {
-        outgoingsRepository.save(outgoings);
+    public void save(Outgoing outgoing) {
+        outgoingRepository.save(outgoing);
     }
 }

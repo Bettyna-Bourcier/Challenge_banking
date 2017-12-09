@@ -1,6 +1,6 @@
 package banking.model;
 
-public enum OutgoingsTypeEnum {
+public enum OutgoingTypeEnum {
     Accomodation,
     Health,
     Car,

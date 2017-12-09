@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Table(name = "USER")
 public class User {
@@ -29,7 +30,7 @@ public class User {
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Outgoings> outgoingsList = new ArrayList<>();
+    private List<Outgoing> outgoingList = new ArrayList<>();
 
     public User() {
     }
@@ -77,16 +78,16 @@ public class User {
         this.password = password;
     }
 
-    public List<Outgoings> getOutgoingsList() {
-        return outgoingsList;
+    public List<Outgoing> getOutgoingsList() {
+        return outgoingList;
     }
 
-    public void setOutgoingsList(List<Outgoings> outgoingsList) {
-        this.outgoingsList = outgoingsList;
+    public void setOutgoingsList(List<Outgoing> outgoingList) {
+        this.outgoingList = outgoingList;
     }
 
-    public void addOutgoing(Outgoings outgoing) {
-        outgoingsList.add(outgoing);
+    public void addOutgoing(Outgoing outgoing) {
+        outgoingList.add(outgoing);
         outgoing.setUser(this);
     }
 }

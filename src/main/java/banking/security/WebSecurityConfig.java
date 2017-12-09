@@ -36,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
                 .antMatchers(HttpMethod.GET, "/h2-console").permitAll()
                 .antMatchers(HttpMethod.GET, "/greeting").permitAll()
+                .antMatchers(HttpMethod.OPTIONS,"*" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // Filter for the /login route (checks client number and password)
@@ -56,8 +57,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization"));
         configuration.addExposedHeader("Authorization"); // Allow browser to read authorization header
+       /* configuration.addExposedHeader("Content-Type");*/
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

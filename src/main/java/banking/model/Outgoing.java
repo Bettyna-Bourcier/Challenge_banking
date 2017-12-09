@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "OUTGOINGS")
-public class Outgoings {
+@Table(name = "OUTGOING")
+public class Outgoing {
 
     @Id
     @Column
@@ -18,7 +18,7 @@ public class Outgoings {
     private Date date;
 
     @Enumerated(EnumType.ORDINAL)
-    private OutgoingsTypeEnum outgoingsType;
+    private OutgoingTypeEnum outgoingType;
 
     @Column
     private float amount;
@@ -28,12 +28,12 @@ public class Outgoings {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    public Outgoings() {
+    public Outgoing() {
     }
 
-    public Outgoings(Date date, OutgoingsTypeEnum outgoingsType, float amount) {
+    public Outgoing(Date date, OutgoingTypeEnum outgoingType, float amount) {
         this.date = date;
-        this.outgoingsType = outgoingsType;
+        this.outgoingType = outgoingType;
         this.amount = amount;
     }
 
@@ -49,12 +49,12 @@ public class Outgoings {
         this.date = date;
     }
 
-    public OutgoingsTypeEnum getOutgoingsType() {
-        return outgoingsType;
+    public OutgoingTypeEnum getOutgoingType() {
+        return outgoingType;
     }
 
-    public void setOutgoingsType(OutgoingsTypeEnum outgoingsType) {
-        this.outgoingsType = outgoingsType;
+    public void setOutgoingType(OutgoingTypeEnum outgoingType) {
+        this.outgoingType = outgoingType;
     }
 
     public User getUser() {
